@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>GoPray</AssemblyName>
+    <RootNamespace>GoPray</RootNamespace>
+    <Version>0.11.0</Version>
+    <AssemblyTitle>GoPray</AssemblyTitle>
+    <Product>GoPray</Product>
+    <Authors>KiraiEEE</Authors>
+    <Company>KiraiEEE</Company>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <EnableDefaultApplicationDefinition>true</EnableDefaultApplicationDefinition>
+    <!-- WFAC010 asks us to set DPI mode through the WinForms bootstrap, but this is a WPF app:
+         WPF reads per-monitor awareness from the manifest, so the manifest stays authoritative. -->
+    <NoWarn>$(NoWarn);WFAC010</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <!-- Framework-dependent: the installer bootstraps the .NET 8 Desktop Runtime instead of
+         embedding it, which is most of what used to make a publish 150MB+. -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <!-- WPF resolves types and resources reflectively; trimming silently breaks XAML at runtime. -->
+    <PublishTrimmed>false</PublishTrimmed>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="app.ico" />
+    <Resource Include="app.png" />
+    <Resource Include="donate.png" />
+    <Resource Include="mosque.png" />
+    <Resource Include="adhan.mp3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WPF-UI" Version="3.1.1" />
+    <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
+    <!-- Decodes the embedded adhan straight from the resource stream; WPF's MediaPlayer
+         cannot read pack:// URIs. -->
+    <PackageReference Include="NAudio" Version="2.2.1" />
+  </ItemGroup>
+
+</Project>

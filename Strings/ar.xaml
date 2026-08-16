@@ -1,0 +1,197 @@
+<!-- Arabic. Must carry exactly the key set in en.xaml — see the note there. -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <!-- ── Direction and type ──────────────────────────────────────────────── -->
+    <FlowDirection x:Key="S_FlowDirection">RightToLeft</FlowDirection>
+    <FlowDirection x:Key="S_NumericFlow">LeftToRight</FlowDirection>
+    <!-- Segoe UI Variable has no Arabic coverage, so naming it first would force a fallback on
+         every glyph. Segoe UI does, and Tahoma is the safe last resort on older installs. -->
+    <FontFamily x:Key="S_FontFamily">Segoe UI, Tahoma</FontFamily>
+
+    <!-- ── Prayer names ────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_PrayerFajr">الفجر</sys:String>
+    <sys:String x:Key="S_PrayerSunrise">الشروق</sys:String>
+    <sys:String x:Key="S_PrayerDhuhr">الظهر</sys:String>
+    <sys:String x:Key="S_PrayerAsr">العصر</sys:String>
+    <sys:String x:Key="S_PrayerMaghrib">المغرب</sys:String>
+    <sys:String x:Key="S_PrayerIsha">العشاء</sys:String>
+    <sys:String x:Key="S_PrayerJumaa">الجمعة</sys:String>
+
+    <!-- ── Hijri calendar ──────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_HijriFormat">{0} {1} {2} هـ</sys:String>
+    <sys:String x:Key="S_Hijri1">محرم</sys:String>
+    <sys:String x:Key="S_Hijri2">صفر</sys:String>
+    <sys:String x:Key="S_Hijri3">ربيع الأول</sys:String>
+    <sys:String x:Key="S_Hijri4">ربيع الآخر</sys:String>
+    <sys:String x:Key="S_Hijri5">جمادى الأولى</sys:String>
+    <sys:String x:Key="S_Hijri6">جمادى الآخرة</sys:String>
+    <sys:String x:Key="S_Hijri7">رجب</sys:String>
+    <sys:String x:Key="S_Hijri8">شعبان</sys:String>
+    <sys:String x:Key="S_Hijri9">رمضان</sys:String>
+    <sys:String x:Key="S_Hijri10">شوال</sys:String>
+    <sys:String x:Key="S_Hijri11">ذو القعدة</sys:String>
+    <sys:String x:Key="S_Hijri12">ذو الحجة</sys:String>
+
+    <!-- ── Widget ──────────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_AppName">GoPray</sys:String>
+    <sys:String x:Key="S_Loading">جارٍ التحميل…</sys:String>
+    <sys:String x:Key="S_Tomorrow">{0} غدًا</sys:String>
+    <sys:String x:Key="S_CantReach">تعذّر الوصول إلى {0}</sys:String>
+    <sys:String x:Key="S_TheService">خدمة مواقيت الصلاة</sys:String>
+    <sys:String x:Key="S_WaitNow">الآن</sys:String>
+    <sys:String x:Key="S_WaitMinutes">بعد {0} د</sys:String>
+    <sys:String x:Key="S_WaitHours">بعد {0} س {1:D2}</sys:String>
+    <sys:String x:Key="S_Iqamah">الإقامة {0}</sys:String>
+
+    <!-- Clock markers. Kept next to the widget strings because FormatClock builds
+         the time from them. -->
+    <sys:String x:Key="S_AM">ص</sys:String>
+    <sys:String x:Key="S_PM">م</sys:String>
+
+    <!-- ── Tray and context menu ───────────────────────────────────────────── -->
+    <sys:String x:Key="S_Open">فتح GoPray</sys:String>
+    <sys:String x:Key="S_ShowWidget">إظهار الأداة</sys:String>
+    <sys:String x:Key="S_HideWidget">إخفاء الأداة</sys:String>
+    <sys:String x:Key="S_RefreshTimes">تحديث المواقيت</sys:String>
+    <sys:String x:Key="S_WidgetSettings">إعدادات الأداة</sys:String>
+    <sys:String x:Key="S_Quit">إنهاء GoPray</sys:String>
+    <sys:String x:Key="S_KeepAbove">إبقاؤها فوق النوافذ الأخرى</sys:String>
+    <sys:String x:Key="S_StopKeepAbove">إيقاف الإبقاء فوق النوافذ الأخرى</sys:String>
+
+    <!-- ── Chrome ──────────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_Close">إغلاق</sys:String>
+    <sys:String x:Key="S_Back">رجوع</sys:String>
+    <sys:String x:Key="S_Settings">الإعدادات</sys:String>
+
+    <!-- ── Today ───────────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_TooltipLoading">جارٍ تحميل مواقيت الصلاة…</sys:String>
+    <sys:String x:Key="S_TooltipNoTimes">لا توجد مواقيت — تعذّر الوصول إلى الجدول</sys:String>
+    <sys:String x:Key="S_NoTimesTitle">لا تتوفر مواقيت</sys:String>
+    <sys:String x:Key="S_NoTimesMessage">تعذّر على GoPray الوصول إلى {0} ولا يوجد جدول محفوظ لليوم. ستستمر المحاولة.</sys:String>
+    <sys:String x:Key="S_DiscordOn">حالة ديسكورد مفعّلة — اضغط للإيقاف</sys:String>
+    <sys:String x:Key="S_DiscordOff">حالة ديسكورد متوقفة — اضغط للتفعيل</sys:String>
+
+    <!-- ── Settings: sections ──────────────────────────────────────────────── -->
+    <sys:String x:Key="S_SecLocation">الموقع</sys:String>
+    <sys:String x:Key="S_SecLocationTip">الموقع والمواقيت</sys:String>
+    <sys:String x:Key="S_SecAlerts">تنبيهات الصلاة</sys:String>
+    <sys:String x:Key="S_SecWidget">الأداة</sys:String>
+    <sys:String x:Key="S_SecApp">التطبيق</sys:String>
+    <sys:String x:Key="S_SecAbout">حول</sys:String>
+    <sys:String x:Key="S_SecAboutTip">حول GoPray</sys:String>
+
+    <!-- ── Settings: location ──────────────────────────────────────────────── -->
+    <sys:String x:Key="S_ChangeLocation">التغيير إلى مسجد أو مدينة أخرى</sys:String>
+    <sys:String x:Key="S_PublishedByMosque">جدول منشور من هذا المسجد</sys:String>
+    <sys:String x:Key="S_CalculatedFor">مواقيت محسوبة لـ {0}، {1}</sys:String>
+    <sys:String x:Key="S_CalculationMethod">طريقة الحساب</sys:String>
+    <sys:String x:Key="S_CantFindMosque">لم تجد مسجدك؟</sys:String>
+    <sys:String x:Key="S_SearchPlacesInstead">ابحث في كل الأماكن بدلًا من ذلك</sys:String>
+    <sys:String x:Key="S_SearchMosquesAgain">العودة إلى البحث عن المساجد</sys:String>
+    <sys:String x:Key="S_PlacesHint">البحث في كل الأماكن على الخريطة. مواقيت المكان محسوبة وليست منشورة من مسجد.</sys:String>
+    <sys:String x:Key="S_Searching">جارٍ البحث…</sys:String>
+    <sys:String x:Key="S_NoMatches">لا توجد نتائج.</sys:String>
+    <sys:String x:Key="S_SearchFailed">تعذّر البحث. تحقق من اتصالك.</sys:String>
+
+    <!-- ── Settings: alerts ────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_ShowOverlay">إظهار شاشة الأذان</sys:String>
+    <sys:String x:Key="S_PlayAdhan">تشغيل الأذان</sys:String>
+    <sys:String x:Key="S_WindowsNotification">إشعار ويندوز</sys:String>
+    <sys:String x:Key="S_NotifyHint">يُستخدم عند إيقاف شاشة الأذان.</sys:String>
+    <sys:String x:Key="S_Preview">معاينة</sys:String>
+    <sys:String x:Key="S_EachPrayer">لكل صلاة</sys:String>
+    <sys:String x:Key="S_EachPrayerHint">المفتاح الأول للتنبيه أصلًا، والثاني للسماح بتشغيل الأذان.</sys:String>
+    <sys:String x:Key="S_AlertOn">تنبيه</sys:String>
+    <sys:String x:Key="S_SoundOn">صوت</sys:String>
+    <sys:String x:Key="S_ShowIqamah">إظهار مواقيت الإقامة</sys:String>
+    <sys:String x:Key="S_ShowIqamahDesc">إذا نشر مسجدك موعد بدء الجماعة، يُعرض بجانب وقت الأذان.</sys:String>
+
+    <!-- ── Settings: widget ────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_ShowOnDesktop">إظهار على سطح المكتب</sys:String>
+    <sys:String x:Key="S_KeepAboveDesc">يفرض بقاءها فوق النوافذ الأخرى، بما فيها تطبيقات ملء الشاشة، بدل الطبقة العادية.</sys:String>
+    <sys:String x:Key="S_Layout">التخطيط</sys:String>
+    <sys:String x:Key="S_LayoutFull">الصلاة والوقت والعد التنازلي</sys:String>
+    <sys:String x:Key="S_LayoutCompact">الصلاة والعد التنازلي</sys:String>
+    <sys:String x:Key="S_LayoutCountdown">العد التنازلي فقط</sys:String>
+    <sys:String x:Key="S_TextSize">حجم الخط</sys:String>
+    <sys:String x:Key="S_SizeSmall">صغير</sys:String>
+    <sys:String x:Key="S_SizeDefault">افتراضي</sys:String>
+    <sys:String x:Key="S_SizeLarge">كبير</sys:String>
+    <sys:String x:Key="S_ProgressBar">شريط التقدم</sys:String>
+    <sys:String x:Key="S_PinExpand">زرّا التثبيت والتوسيع</sys:String>
+    <sys:String x:Key="S_PinExpandDesc">عند إخفائهما، ثبّت الأداة من هنا بدلًا من ذلك.</sys:String>
+    <sys:String x:Key="S_OpenAbove">فتح النافذة فوق الأداة</sys:String>
+    <sys:String x:Key="S_OpenAboveDesc">أوقفه لإعادة فتحها في آخر مكان نقلتها إليه.</sys:String>
+    <sys:String x:Key="S_Clock24">نظام 24 ساعة</sys:String>
+    <sys:String x:Key="S_Animations">الحركات</sys:String>
+    <sys:String x:Key="S_Hotkey">اختصار عام</sys:String>
+    <sys:String x:Key="S_HotkeyDesc">يُظهر الأداة أو يخفيها من أي مكان. غير مضبوط حتى تختار واحدًا.</sys:String>
+    <sys:String x:Key="S_HotkeyNone">غير مضبوط</sys:String>
+    <sys:String x:Key="S_HotkeySet">ضبط الاختصار</sys:String>
+    <sys:String x:Key="S_HotkeyPress">اضغط المفاتيح…</sys:String>
+    <sys:String x:Key="S_HotkeyClearTip">مسح الاختصار</sys:String>
+    <sys:String x:Key="S_HotkeyTaken">هذا الاختصار مستخدم من تطبيق آخر.</sys:String>
+
+    <!-- ── Settings: app ───────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_StartWithWindows">التشغيل مع ويندوز</sys:String>
+    <sys:String x:Key="S_Language">اللغة</sys:String>
+    <sys:String x:Key="S_LanguageAuto">مثل ويندوز</sys:String>
+    <sys:String x:Key="S_HijriAdjust">ضبط التاريخ الهجري</sys:String>
+    <sys:String x:Key="S_HijriAdjustDesc">أزِحه ليطابق رؤية الهلال في بلدك.</sys:String>
+    <sys:String x:Key="S_DiscordPresence">حالة ديسكورد</sys:String>
+    <sys:String x:Key="S_DiscordPresenceDesc">تعرض الصلاة القادمة في ملفك على ديسكورد.</sys:String>
+    <sys:String x:Key="S_DiscordCountdown">إظهار العد التنازلي</sys:String>
+    <sys:String x:Key="S_DiscordCountdownDesc">يعدّ ديسكورد تنازليًا حتى الصلاة مباشرة. أوقفه لعرض اسم الصلاة وحده.</sys:String>
+    <sys:String x:Key="S_DiscordShortcut">اختصار ديسكورد</sys:String>
+    <sys:String x:Key="S_DiscordShortcutDesc">زر تبديل بضغطة واحدة أسفل هذه النافذة.</sys:String>
+    <sys:String x:Key="S_ClearData">مسح كل البيانات</sys:String>
+    <sys:String x:Key="S_ClearDataDesc">يحذف موقعك وإعداداتك والمواقيت المحفوظة، ثم ينهي التطبيق.</sys:String>
+    <sys:String x:Key="S_Clear">مسح</sys:String>
+    <sys:String x:Key="S_Confirm">تأكيد</sys:String>
+
+    <!-- ── Settings: updates ───────────────────────────────────────────────── -->
+    <sys:String x:Key="S_Updates">التحديثات</sys:String>
+    <sys:String x:Key="S_UpdatesDesc">التحقق من وجود إصدار أحدث على GitHub عند بدء التشغيل.</sys:String>
+    <sys:String x:Key="S_CheckNow">تحقق الآن</sys:String>
+    <sys:String x:Key="S_Checking">جارٍ التحقق…</sys:String>
+    <sys:String x:Key="S_UpToDate">GoPray محدّث.</sys:String>
+    <sys:String x:Key="S_UpdateAvailable">الإصدار {0} متوفر.</sys:String>
+    <sys:String x:Key="S_UpdateFailed">تعذّر التحقق من التحديثات.</sys:String>
+    <sys:String x:Key="S_Download">تنزيل</sys:String>
+
+    <!-- ── About ───────────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_By">بواسطة</sys:String>
+    <sys:String x:Key="S_TimesFrom">مواقيت الصلاة</sys:String>
+    <sys:String x:Key="S_BuiltWith">مبني باستخدام</sys:String>
+
+    <!-- ── Support ─────────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_Support">الدعم</sys:String>
+    <sys:String x:Key="S_SupportTip">ادعم GoPray</sys:String>
+    <sys:String x:Key="S_ThankYouUsing">شكرًا لاستخدامك GoPray</sys:String>
+    <sys:String x:Key="S_ThankYouSupporting">شكرًا لدعمك GoPray</sys:String>
+    <sys:String x:Key="S_SupportBody1">GoPray مجاني وسيبقى مجانيًا. كل الميزات متاحة للجميع — لا شيء محجوز لمن يدفع.</sys:String>
+    <sys:String x:Key="S_SupportBody2">إن كان قد نفعك، فدعمه موضع ترحيب لكنه غير متوقع أبدًا.</sys:String>
+    <sys:String x:Key="S_SupportPay">ادعم GoPray</sys:String>
+    <sys:String x:Key="S_SupportPayHint">لم تُضبط وسيلة دفع بعد — سيُفتح هذا عند توفرها.</sys:String>
+    <sys:String x:Key="S_FreeWays">طرق مجانية للمساعدة</sys:String>
+    <sys:String x:Key="S_CopyNote">نسخ نبذة للمشاركة</sys:String>
+    <sys:String x:Key="S_Copied">تم النسخ</sys:String>
+    <sys:String x:Key="S_ShareHint">إخبار من قد ينتفع به يساعد بالقدر نفسه.</sys:String>
+    <sys:String x:Key="S_ShareText">GoPray — أداة صغيرة وهادئة لمواقيت الصلاة على ويندوز. تجلس في الزاوية، وتعدّ تنازليًا حتى الصلاة القادمة، وتشغّل الأذان.</sys:String>
+
+    <!-- ── Onboarding ──────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_WhereDoYouPray">أين تصلي؟</sys:String>
+    <sys:String x:Key="S_OnboardingHint">ابحث عن مسجدك لاستخدام جدوله المنشور، أو اختر مدينة لتُحسب المواقيت.</sys:String>
+    <sys:String x:Key="S_MosqueOrCity">مسجد أو مدينة</sys:String>
+    <sys:String x:Key="S_ShowTimesAs">عرض المواقيت بنظام</sys:String>
+    <sys:String x:Key="S_Clock24Example">24 ساعة (17:30)</sys:String>
+    <sys:String x:Key="S_Clock12Example">12 ساعة (5:30 م)</sys:String>
+    <sys:String x:Key="S_Continue">متابعة</sys:String>
+
+    <!-- ── Overlay ─────────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_TimeToPray">حان وقت الصلاة</sys:String>
+    <sys:String x:Key="S_AllahuAkbar">الله أكبر</sys:String>
+    <sys:String x:Key="S_TimeFor">حان وقت {0}</sys:String>
+</ResourceDictionary>

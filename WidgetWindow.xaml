@@ -1,0 +1,135 @@
+<!-- The desktop card: next prayer, countdown, progress. Its own window, separate from MainWindow,
+     so opening the full view no longer takes it off the desktop — the two used to be one window in
+     two mutually exclusive states, which meant expanding necessarily hid the widget.
+
+     Both windows are constructed once and live for the app's whole run; "hiding" is Window.Hide,
+     never Close. That is what keeps the old flickering-double-widget race dead: the original bug
+     was recreating a window on every show, not having two of them. -->
+<ui:FluentWindow x:Class="GoPray.WidgetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        Title="GoPray"
+        SizeToContent="WidthAndHeight"
+        MinWidth="0" MinHeight="0"
+        WindowStyle="None"
+        ExtendsContentIntoTitleBar="True"
+        WindowBackdropType="Mica"
+        WindowCornerPreference="Round"
+        ShowInTaskbar="False"
+        ShowActivated="False"
+        ResizeMode="NoResize"
+        WindowStartupLocation="Manual"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True"
+        FlowDirection="{DynamicResource S_FlowDirection}"
+        FontFamily="{DynamicResource S_FontFamily}"
+        Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="ClearType"
+        RenderOptions.ClearTypeHint="Enabled"
+        Icon="pack://application:,,,/app.ico"
+        Padding="0" Margin="0">
+
+    <Grid x:Name="CompactRoot" Opacity="0" MouseLeftButtonDown="Card_MouseLeftButtonDown">
+        <Grid.RenderTransform>
+            <TranslateTransform x:Name="CompactShift" Y="8"/>
+        </Grid.RenderTransform>
+
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="{DynamicResource S_Open}" Click="MenuOpen_Click"/>
+                <MenuItem x:Name="MenuPin" Header="{DynamicResource S_KeepAbove}" IsCheckable="True"
+                          Click="MenuPin_Click"/>
+                <MenuItem Header="{DynamicResource S_RefreshTimes}" Click="MenuRefresh_Click"/>
+                <Separator/>
+                <MenuItem Header="{DynamicResource S_WidgetSettings}" Click="MenuSettings_Click"/>
+                <MenuItem Header="{DynamicResource S_HideWidget}" Click="MenuHide_Click"/>
+                <Separator/>
+                <MenuItem Header="{DynamicResource S_Quit}" Click="MenuQuit_Click"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
+
+        <!-- Actions stay dimmed rather than hidden, so they are discoverable at a glance. -->
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="UIElement.MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="Actions"
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="1" Duration="0:0:0.12"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="UIElement.MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="Actions"
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="0.7" Duration="0:0:0.2"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+
+        <!-- Scaled as layout, so the window itself grows or shrinks with the text size. -->
+        <Grid>
+            <Grid.LayoutTransform>
+                <ScaleTransform x:Name="ContentScale"/>
+            </Grid.LayoutTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="MainRow" Margin="12,8,6,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="LabelColumn" Width="104"/>
+                    <ColumnDefinition Width="86"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel x:Name="LabelStack" VerticalAlignment="Center">
+                    <ui:TextBlock x:Name="PrayerName" Text="—" FontTypography="BodyStrong"
+                                  TextTrimming="CharacterEllipsis"/>
+                    <ui:TextBlock x:Name="SubLine" Text="{DynamicResource S_Loading}"
+                                  FontTypography="Caption" Appearance="Secondary"
+                                  Margin="0,2,0,0" TextTrimming="CharacterEllipsis"/>
+                </StackPanel>
+
+                <!-- Left-to-right regardless of language: "-1:23:45" is a numeric run and
+                     mirroring it puts the sign and the seconds on the wrong ends. -->
+                <TextBlock x:Name="Countdown" Grid.Column="1" Text="--:--"
+                           FontSize="15" FontWeight="SemiBold"
+                           VerticalAlignment="Center" HorizontalAlignment="Right"
+                           Margin="6,0,6,0"
+                           FlowDirection="{DynamicResource S_NumericFlow}"
+                           Typography.NumeralAlignment="Tabular"
+                           Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
+
+                <StackPanel x:Name="Actions" Grid.Column="2"
+                            Orientation="Horizontal" VerticalAlignment="Center" Opacity="0.7">
+                    <ui:Button x:Name="PinButton" Appearance="Transparent" BorderThickness="0"
+                               CornerRadius="16" Padding="5"
+                               Click="Pin_Click" ToolTip="{DynamicResource S_KeepAbove}">
+                        <ui:Button.Icon>
+                            <ui:SymbolIcon x:Name="PinIcon" Symbol="Pin24" FontSize="14"/>
+                        </ui:Button.Icon>
+                    </ui:Button>
+
+                    <ui:Button Appearance="Transparent" BorderThickness="0"
+                               CornerRadius="16" Padding="5"
+                               Click="Expand_Click" ToolTip="{DynamicResource S_Open}">
+                        <ui:Button.Icon>
+                            <ui:SymbolIcon Symbol="ChevronUp24" FontSize="15"/>
+                        </ui:Button.Icon>
+                    </ui:Button>
+                </StackPanel>
+            </Grid>
+
+            <!-- How much of the gap between the last prayer and the next has elapsed -->
+            <ProgressBar x:Name="Progress" Grid.Row="1" Margin="12,6,12,8"
+                         Minimum="0" Maximum="1" Value="0"/>
+        </Grid>
+    </Grid>
+</ui:FluentWindow>

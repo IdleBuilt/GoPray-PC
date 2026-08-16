@@ -1,0 +1,202 @@
+<!-- Every user-visible string in GoPray, English.
+
+     Keys are S_ prefixed and referenced from XAML as {DynamicResource S_Key}; swapping this whole
+     dictionary for another language retranslates the live UI without rebuilding a single window.
+     ar.xaml must carry the same key set — a missing key falls back to showing the key itself, which
+     is deliberately ugly so it gets noticed. -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+
+    <!-- ── Direction and type ──────────────────────────────────────────────── -->
+    <FlowDirection x:Key="S_FlowDirection">LeftToRight</FlowDirection>
+    <!-- Clock times and countdowns stay left-to-right even in an RTL layout: "-1:23:45" is a
+         numeric run, and mirroring it puts the sign and the seconds on the wrong ends. -->
+    <FlowDirection x:Key="S_NumericFlow">LeftToRight</FlowDirection>
+    <FontFamily x:Key="S_FontFamily">Segoe UI Variable Text, Segoe UI</FontFamily>
+
+    <!-- ── Prayer names ────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_PrayerFajr">Fajr</sys:String>
+    <sys:String x:Key="S_PrayerSunrise">Sunrise</sys:String>
+    <sys:String x:Key="S_PrayerDhuhr">Dhuhr</sys:String>
+    <sys:String x:Key="S_PrayerAsr">Asr</sys:String>
+    <sys:String x:Key="S_PrayerMaghrib">Maghrib</sys:String>
+    <sys:String x:Key="S_PrayerIsha">Isha</sys:String>
+    <sys:String x:Key="S_PrayerJumaa">Jumu'ah</sys:String>
+
+    <!-- ── Hijri calendar ──────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_HijriFormat">{0} {1} {2} AH</sys:String>
+    <sys:String x:Key="S_Hijri1">Muharram</sys:String>
+    <sys:String x:Key="S_Hijri2">Safar</sys:String>
+    <sys:String x:Key="S_Hijri3">Rabi' al-Awwal</sys:String>
+    <sys:String x:Key="S_Hijri4">Rabi' al-Thani</sys:String>
+    <sys:String x:Key="S_Hijri5">Jumada al-Ula</sys:String>
+    <sys:String x:Key="S_Hijri6">Jumada al-Akhirah</sys:String>
+    <sys:String x:Key="S_Hijri7">Rajab</sys:String>
+    <sys:String x:Key="S_Hijri8">Sha'ban</sys:String>
+    <sys:String x:Key="S_Hijri9">Ramadan</sys:String>
+    <sys:String x:Key="S_Hijri10">Shawwal</sys:String>
+    <sys:String x:Key="S_Hijri11">Dhu al-Qi'dah</sys:String>
+    <sys:String x:Key="S_Hijri12">Dhu al-Hijjah</sys:String>
+
+    <!-- ── Widget ──────────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_AppName">GoPray</sys:String>
+    <sys:String x:Key="S_Loading">Loading…</sys:String>
+    <sys:String x:Key="S_Tomorrow">{0} tomorrow</sys:String>
+    <sys:String x:Key="S_CantReach">Can't reach {0}</sys:String>
+    <sys:String x:Key="S_TheService">the prayer times service</sys:String>
+    <sys:String x:Key="S_WaitNow">now</sys:String>
+    <sys:String x:Key="S_WaitMinutes">in {0} min</sys:String>
+    <sys:String x:Key="S_WaitHours">in {0} h {1:D2}</sys:String>
+    <sys:String x:Key="S_Iqamah">Iqamah {0}</sys:String>
+
+    <!-- Clock markers. Kept next to the widget strings because FormatClock builds
+         the time from them. -->
+    <sys:String x:Key="S_AM">AM</sys:String>
+    <sys:String x:Key="S_PM">PM</sys:String>
+
+    <!-- ── Tray and context menu ───────────────────────────────────────────── -->
+    <sys:String x:Key="S_Open">Open GoPray</sys:String>
+    <sys:String x:Key="S_ShowWidget">Show widget</sys:String>
+    <sys:String x:Key="S_HideWidget">Hide widget</sys:String>
+    <sys:String x:Key="S_RefreshTimes">Refresh times</sys:String>
+    <sys:String x:Key="S_WidgetSettings">Widget settings</sys:String>
+    <sys:String x:Key="S_Quit">Quit GoPray</sys:String>
+    <sys:String x:Key="S_KeepAbove">Keep above other windows</sys:String>
+    <sys:String x:Key="S_StopKeepAbove">Stop keeping above other windows</sys:String>
+
+    <!-- ── Chrome ──────────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_Close">Close</sys:String>
+    <sys:String x:Key="S_Back">Back</sys:String>
+    <sys:String x:Key="S_Settings">Settings</sys:String>
+
+    <!-- ── Today ───────────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_TooltipLoading">Loading prayer times…</sys:String>
+    <sys:String x:Key="S_TooltipNoTimes">No prayer times — can't reach the timetable</sys:String>
+    <sys:String x:Key="S_NoTimesTitle">No times available</sys:String>
+    <sys:String x:Key="S_NoTimesMessage">GoPray couldn't reach {0} and has nothing stored for today. It will keep trying.</sys:String>
+    <sys:String x:Key="S_DiscordOn">Discord presence is on — click to turn off</sys:String>
+    <sys:String x:Key="S_DiscordOff">Discord presence is off — click to turn on</sys:String>
+
+    <!-- ── Settings: sections ──────────────────────────────────────────────── -->
+    <sys:String x:Key="S_SecLocation">Location</sys:String>
+    <sys:String x:Key="S_SecLocationTip">Location and times</sys:String>
+    <sys:String x:Key="S_SecAlerts">Prayer alerts</sys:String>
+    <sys:String x:Key="S_SecWidget">Widget</sys:String>
+    <sys:String x:Key="S_SecApp">App</sys:String>
+    <sys:String x:Key="S_SecAbout">About</sys:String>
+    <sys:String x:Key="S_SecAboutTip">About GoPray</sys:String>
+
+    <!-- ── Settings: location ──────────────────────────────────────────────── -->
+    <sys:String x:Key="S_ChangeLocation">Change to another mosque or city</sys:String>
+    <sys:String x:Key="S_PublishedByMosque">Timetable published by this mosque</sys:String>
+    <sys:String x:Key="S_CalculatedFor">Times calculated for {0}, {1}</sys:String>
+    <sys:String x:Key="S_CalculationMethod">Calculation method</sys:String>
+    <sys:String x:Key="S_CantFindMosque">Can't find your mosque?</sys:String>
+    <sys:String x:Key="S_SearchPlacesInstead">Search all places instead</sys:String>
+    <sys:String x:Key="S_SearchMosquesAgain">Back to mosque search</sys:String>
+    <sys:String x:Key="S_PlacesHint">Searching every place on the map. Times for a place are calculated, not published by a mosque.</sys:String>
+    <sys:String x:Key="S_Searching">Searching…</sys:String>
+    <sys:String x:Key="S_NoMatches">No matches.</sys:String>
+    <sys:String x:Key="S_SearchFailed">Couldn't search. Check your connection.</sys:String>
+
+    <!-- ── Settings: alerts ────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_ShowOverlay">Show the adhan overlay</sys:String>
+    <sys:String x:Key="S_PlayAdhan">Play the adhan</sys:String>
+    <sys:String x:Key="S_WindowsNotification">Windows notification</sys:String>
+    <sys:String x:Key="S_NotifyHint">Used when the overlay is turned off.</sys:String>
+    <sys:String x:Key="S_Preview">Preview</sys:String>
+    <sys:String x:Key="S_EachPrayer">Each prayer</sys:String>
+    <sys:String x:Key="S_EachPrayerHint">Left switch alerts you at all; right switch lets it play the adhan.</sys:String>
+    <sys:String x:Key="S_AlertOn">Alert</sys:String>
+    <sys:String x:Key="S_SoundOn">Sound</sys:String>
+    <sys:String x:Key="S_ShowIqamah">Show iqamah times</sys:String>
+    <sys:String x:Key="S_ShowIqamahDesc">When your mosque publishes when the congregation starts, show it beside the adhan time.</sys:String>
+
+    <!-- ── Settings: widget ────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_ShowOnDesktop">Show on desktop</sys:String>
+    <sys:String x:Key="S_KeepAboveDesc">Forces it above other windows, including full-screen apps, instead of the normal desktop layer.</sys:String>
+    <sys:String x:Key="S_Layout">Layout</sys:String>
+    <sys:String x:Key="S_LayoutFull">Prayer, time, countdown</sys:String>
+    <sys:String x:Key="S_LayoutCompact">Prayer and countdown</sys:String>
+    <sys:String x:Key="S_LayoutCountdown">Countdown only</sys:String>
+    <sys:String x:Key="S_TextSize">Text size</sys:String>
+    <sys:String x:Key="S_SizeSmall">Small</sys:String>
+    <sys:String x:Key="S_SizeDefault">Default</sys:String>
+    <sys:String x:Key="S_SizeLarge">Large</sys:String>
+    <sys:String x:Key="S_ProgressBar">Progress bar</sys:String>
+    <sys:String x:Key="S_PinExpand">Pin and expand buttons</sys:String>
+    <sys:String x:Key="S_PinExpandDesc">With these hidden, pin the widget from here instead.</sys:String>
+    <sys:String x:Key="S_OpenAbove">Open the window above the widget</sys:String>
+    <sys:String x:Key="S_OpenAboveDesc">Turn off to reopen it wherever you last moved it.</sys:String>
+    <sys:String x:Key="S_Clock24">24-hour clock</sys:String>
+    <sys:String x:Key="S_Animations">Animations</sys:String>
+    <sys:String x:Key="S_Hotkey">Global shortcut</sys:String>
+    <sys:String x:Key="S_HotkeyDesc">Shows or hides the widget from anywhere. Not set until you choose one.</sys:String>
+    <sys:String x:Key="S_HotkeyNone">Not set</sys:String>
+    <sys:String x:Key="S_HotkeySet">Set shortcut</sys:String>
+    <sys:String x:Key="S_HotkeyPress">Press keys…</sys:String>
+    <sys:String x:Key="S_HotkeyClearTip">Clear shortcut</sys:String>
+    <sys:String x:Key="S_HotkeyTaken">That shortcut is already used by another app.</sys:String>
+
+    <!-- ── Settings: app ───────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_StartWithWindows">Start with Windows</sys:String>
+    <sys:String x:Key="S_Language">Language</sys:String>
+    <sys:String x:Key="S_LanguageAuto">Same as Windows</sys:String>
+    <sys:String x:Key="S_HijriAdjust">Adjust the Hijri date</sys:String>
+    <sys:String x:Key="S_HijriAdjustDesc">Shift it to match your local moon sighting.</sys:String>
+    <sys:String x:Key="S_DiscordPresence">Discord presence</sys:String>
+    <sys:String x:Key="S_DiscordPresenceDesc">Shows the next prayer on your Discord profile.</sys:String>
+    <sys:String x:Key="S_DiscordCountdown">Show the countdown</sys:String>
+    <sys:String x:Key="S_DiscordCountdownDesc">Discord counts down to the prayer live. Turn this off to show the prayer name alone.</sys:String>
+    <sys:String x:Key="S_DiscordShortcut">Discord shortcut</sys:String>
+    <sys:String x:Key="S_DiscordShortcutDesc">One-click toggle in the footer of this window.</sys:String>
+    <sys:String x:Key="S_ClearData">Clear all data</sys:String>
+    <sys:String x:Key="S_ClearDataDesc">Deletes your location, settings and cached times, then quits.</sys:String>
+    <sys:String x:Key="S_Clear">Clear</sys:String>
+    <sys:String x:Key="S_Confirm">Confirm</sys:String>
+
+    <!-- ── Settings: updates ───────────────────────────────────────────────── -->
+    <sys:String x:Key="S_Updates">Updates</sys:String>
+    <sys:String x:Key="S_UpdatesDesc">Check GitHub for a newer version when GoPray starts.</sys:String>
+    <sys:String x:Key="S_CheckNow">Check now</sys:String>
+    <sys:String x:Key="S_Checking">Checking…</sys:String>
+    <sys:String x:Key="S_UpToDate">GoPray is up to date.</sys:String>
+    <sys:String x:Key="S_UpdateAvailable">Version {0} is available.</sys:String>
+    <sys:String x:Key="S_UpdateFailed">Couldn't check for updates.</sys:String>
+    <sys:String x:Key="S_Download">Download</sys:String>
+
+    <!-- ── About ───────────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_By">by</sys:String>
+    <sys:String x:Key="S_TimesFrom">Prayer times</sys:String>
+    <sys:String x:Key="S_BuiltWith">Built with</sys:String>
+
+    <!-- ── Support ─────────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_Support">Support</sys:String>
+    <sys:String x:Key="S_SupportTip">Support GoPray</sys:String>
+    <sys:String x:Key="S_ThankYouUsing">Thank you for using GoPray</sys:String>
+    <sys:String x:Key="S_ThankYouSupporting">Thank you for supporting GoPray</sys:String>
+    <sys:String x:Key="S_SupportBody1">GoPray is free, and it stays free. Every feature is available to everyone — nothing here is held back for people who pay.</sys:String>
+    <sys:String x:Key="S_SupportBody2">If it has been useful to you, supporting it is welcome but never expected.</sys:String>
+    <sys:String x:Key="S_SupportPay">Support GoPray</sys:String>
+    <sys:String x:Key="S_SupportPayHint">A payment method isn't set up yet — this will open when it is.</sys:String>
+    <sys:String x:Key="S_FreeWays">Free ways to help</sys:String>
+    <sys:String x:Key="S_CopyNote">Copy a note to share</sys:String>
+    <sys:String x:Key="S_Copied">Copied</sys:String>
+    <sys:String x:Key="S_ShareHint">Telling someone who'd find it useful helps just as much.</sys:String>
+    <sys:String x:Key="S_ShareText">GoPray — a small, quiet prayer-times widget for Windows. It sits in the corner, counts down to the next prayer, and plays the adhan.</sys:String>
+
+    <!-- ── Onboarding ──────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_WhereDoYouPray">Where do you pray?</sys:String>
+    <sys:String x:Key="S_OnboardingHint">Search for your mosque to use its published timetable, or pick a city to have times calculated.</sys:String>
+    <sys:String x:Key="S_MosqueOrCity">Mosque or city</sys:String>
+    <sys:String x:Key="S_ShowTimesAs">Show times as</sys:String>
+    <sys:String x:Key="S_Clock24Example">24-hour (17:30)</sys:String>
+    <sys:String x:Key="S_Clock12Example">12-hour (5:30 PM)</sys:String>
+    <sys:String x:Key="S_Continue">Continue</sys:String>
+
+    <!-- ── Overlay ─────────────────────────────────────────────────────────── -->
+    <sys:String x:Key="S_TimeToPray">It's time to pray</sys:String>
+    <sys:String x:Key="S_AllahuAkbar">Allahu Akbar</sys:String>
+    <sys:String x:Key="S_TimeFor">It's time for {0}</sys:String>
+</ResourceDictionary>

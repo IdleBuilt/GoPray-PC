@@ -1,0 +1,106 @@
+<Window x:Class="GoPray.AdhanOverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        Title="GoPray"
+        Width="380" Height="230"
+        FlowDirection="{DynamicResource S_FlowDirection}"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        ShowInTaskbar="False"
+        ShowActivated="False"
+        ResizeMode="NoResize"
+        WindowStartupLocation="Manual"
+        UseLayoutRounding="True">
+
+    <!-- Deliberately not a window in appearance: no frame, no card, no chrome. It is a layer of
+         light that settles over whatever is on screen, and a click anywhere dismisses it. -->
+    <Grid x:Name="Root" Opacity="0" RenderTransformOrigin="0.5,0.5"
+          Background="Transparent" Cursor="Hand"
+          MouseLeftButtonDown="Root_MouseLeftButtonDown">
+        <Grid.RenderTransform>
+            <ScaleTransform x:Name="RootScale" ScaleX="0.94" ScaleY="0.94"/>
+        </Grid.RenderTransform>
+
+        <!-- Soft halo: gives the text something to sit on without drawing a box. -->
+        <Ellipse x:Name="Halo" Width="330" Height="200"
+                 HorizontalAlignment="Center" VerticalAlignment="Center"
+                 RenderTransformOrigin="0.5,0.5">
+            <Ellipse.RenderTransform>
+                <ScaleTransform x:Name="HaloScale"/>
+            </Ellipse.RenderTransform>
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Offset="0" Color="#D8000000"/>
+                    <GradientStop Offset="0.55" Color="#9E000000"/>
+                    <GradientStop Offset="1" Color="#00000000"/>
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+
+        <Canvas x:Name="ParticleCanvas" IsHitTestVisible="False"/>
+
+        <!-- Rings expanding out of the centre, staggered -->
+        <Canvas HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False">
+            <Ellipse x:Name="Ring1" Width="40" Height="40" Canvas.Left="-20" Canvas.Top="-20"
+                     StrokeThickness="1.5" Opacity="0" RenderTransformOrigin="0.5,0.5"
+                     Stroke="{DynamicResource AccentTextFillColorPrimaryBrush}">
+                <Ellipse.RenderTransform><ScaleTransform x:Name="Ring1Scale"/></Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse x:Name="Ring2" Width="40" Height="40" Canvas.Left="-20" Canvas.Top="-20"
+                     StrokeThickness="1.2" Opacity="0" RenderTransformOrigin="0.5,0.5"
+                     Stroke="{DynamicResource AccentTextFillColorPrimaryBrush}">
+                <Ellipse.RenderTransform><ScaleTransform x:Name="Ring2Scale"/></Ellipse.RenderTransform>
+            </Ellipse>
+            <Ellipse x:Name="Ring3" Width="40" Height="40" Canvas.Left="-20" Canvas.Top="-20"
+                     StrokeThickness="1" Opacity="0" RenderTransformOrigin="0.5,0.5"
+                     Stroke="{DynamicResource AccentTextFillColorPrimaryBrush}">
+                <Ellipse.RenderTransform><ScaleTransform x:Name="Ring3Scale"/></Ellipse.RenderTransform>
+            </Ellipse>
+        </Canvas>
+
+        <!-- The last few seconds before the adhan: one large numeral, fading in and out in place.
+             It occupies the same centre as the reminder itself, so the transition at zero reads as
+             the number resolving into the prayer rather than as two separate things appearing. -->
+        <TextBlock x:Name="LeadInText" Text="" Opacity="0"
+                   FontSize="72" FontWeight="Light" Foreground="White"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5"
+                   FlowDirection="{DynamicResource S_NumericFlow}"
+                   Typography.NumeralAlignment="Tabular">
+            <TextBlock.RenderTransform>
+                <ScaleTransform x:Name="LeadInScale"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+
+        <StackPanel x:Name="MainContent" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    IsHitTestVisible="False">
+            <TextBlock x:Name="PrayerNameText" Text=""
+                       FontSize="40" FontWeight="SemiBold" Foreground="White"
+                       FontFamily="{DynamicResource S_FontFamily}"
+                       HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
+                    <ScaleTransform x:Name="NameScale" ScaleX="0.72" ScaleY="0.72"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+
+            <TextBlock x:Name="TimeLine" Text="" FontSize="13" Margin="0,4,0,0"
+                       Foreground="#B8FFFFFF" HorizontalAlignment="Center"
+                       FlowDirection="{DynamicResource S_NumericFlow}"/>
+
+            <!-- Two lines trading places in the same slot -->
+            <Grid Height="20" Margin="0,10,0,0">
+                <TextBlock x:Name="MessageLine" Text="{DynamicResource S_TimeToPray}" FontSize="13"
+                           HorizontalAlignment="Center"
+                           FontFamily="{DynamicResource S_FontFamily}"
+                           Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
+                <TextBlock x:Name="PhraseLine" Text="{DynamicResource S_AllahuAkbar}" FontSize="13" Opacity="0"
+                           HorizontalAlignment="Center"
+                           FontFamily="{DynamicResource S_FontFamily}"
+                           Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
